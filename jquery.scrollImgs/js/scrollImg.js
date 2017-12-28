@@ -238,4 +238,4 @@
                         
                 };
                 
-        })(jQuery);
+        })(jQuery, window, document);
