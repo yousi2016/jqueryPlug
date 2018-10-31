@@ -22,18 +22,14 @@
                                 bigImgScroll_list:'.bigImgScroll_list',
                                 //幻灯片小按钮
                                 bigImgScroll_btn:'.bigImgScroll_btn',
-                                //每一个li的margin
-                                bigImgScroll_listItem_margin:0,
                                 //滚动间隔时间
                                 scrollTime:500,
                                 //左边按钮
                                 btnPrev:'.btnPrev',
                                 //右边按钮
                                 btnNext:'.btnNext',
-                                
+                                //滚动个数
                                	scrollImgNum:1
-                                
-                                
                                 
                         };
                         
@@ -78,12 +74,9 @@
                                 /*注意此处一定要等元素添加到页面了才获取*/
                                 this.$bigImgScroll_list_item=this.$bigImgScroll_list.children();
                                 
-                                this.$liWidth=this.$bigImgScroll_list_item.eq(0).width();
+                                this.$liWidth=this.$bigImgScroll_list_item.eq(0).outerWidth(true);
 								
-								//添加margin后的
-								this.$liaddmargin=this.$liWidth+this.opt.bigImgScroll_listItem_margin;
-								
-                                this.$bigImgScroll_list.width(this.$liaddmargin*this.$bigImgScroll_list_item.length);
+                                this.$bigImgScroll_list.width(this.$liWidth*this.$bigImgScroll_list_item.length);
                                 
                                 this.$length=this.$bigImgScroll_list_item.length;
                                 
@@ -114,7 +107,7 @@
                                                     
                                                 _this.$bigImgScroll_list.animate({
                                                     
-                                                    left:-(_this.num%_this.$length)*_this.$liWidth
+                                                     left:-(_this.num%_this.$length)*(_this.$liWidth*_this.opt.scrollImgNum)
                                                     
                                                 }, _this.opt.scrollTime, 'linear', function () {
                                                     
@@ -193,7 +186,7 @@
                                         
                                             _this.$bigImgScroll_list.animate({
                                             
-                                                    left:-(_this.num%_this.$length)*(_this.$liWidth*_this.opt.scrollImgNum+(_this.opt.scrollImgNum-1)*_this.opt.bigImgScroll_listItem_margin)
+                                                    left:-(_this.num%_this.$length)*(_this.$liWidth*_this.opt.scrollImgNum)
                                                     
                                                 }, _this.opt.scrollTime, 'linear', function () {
                                                     
